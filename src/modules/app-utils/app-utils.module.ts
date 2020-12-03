@@ -1,7 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { CommonService } from '../common';
 import { AppConfigModule } from '../app-config';
-import { AppHealthModule } from '../app-health';
+import { AppHealthModule, AppHealthService } from '../app-health';
 
 @Module({})
 export class AppUtilsModule {
@@ -9,8 +9,8 @@ export class AppUtilsModule {
     return {
       module: AppUtilsModule,
       imports: [AppHealthModule, AppConfigModule],
-      providers: [CommonService],
-      exports: [CommonService],
+      providers: [CommonService, AppHealthService],
+      exports: [CommonService, AppHealthService],
     };
   }
 
