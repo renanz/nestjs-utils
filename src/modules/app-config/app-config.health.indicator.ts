@@ -1,15 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { HealthIndicator, HealthIndicatorResult, HealthCheckError } from '@nestjs/terminus';
+import {
+  HealthIndicator,
+  HealthIndicatorResult,
+  HealthCheckError,
+} from '@nestjs/terminus';
+import { AppConfigService } from './app-config.service';
 
-@Injectable()
 export class AppConfigHealthIndicator extends HealthIndicator {
-  constructor() {
+  constructor(private readonly appConfigService: AppConfigService) {
     super();
   }
 
   async isHealthy(key: string): Promise<HealthIndicatorResult> {
     const isHealthy = true;
-    const result = this.getStatus(key, isHealthy, { hello: 'world' });
+    const result = this.getStatus(key, isHealthy, {
+      current: this.appConfigService.hello(),
+    });
 
     if (isHealthy) {
       return result;

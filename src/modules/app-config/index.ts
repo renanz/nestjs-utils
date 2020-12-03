@@ -1,3 +1,4 @@
-export * from './app-config.health.indicator';
-export * from './app-config.module';
-export * from './app-config.service';
+export { AppConfigHealthIndicator } from './app-config.health.indicator';
+export { AppConfigModule } from './app-config.module';
+export { AppConfigService } from './app-config.service';
+export { AppConfigModuleOptions } from './app-config.interface';
