@@ -4,6 +4,9 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "./lib",
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
     "strict": true
   },
   "include": ["src"],
