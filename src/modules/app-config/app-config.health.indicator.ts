@@ -1,8 +1,4 @@
-import {
-  HealthIndicator,
-  HealthIndicatorResult,
-  HealthCheckError,
-} from '@nestjs/terminus';
+import { HealthIndicator, HealthIndicatorResult, HealthCheckError } from '@nestjs/terminus';
 import { AppConfigService } from './app-config.service';
 
 export class AppConfigHealthIndicator extends HealthIndicator {

@@ -11,15 +11,13 @@ export class AppConfigModule {
   ): DynamicModule {
     const appConfigServiceProvider: Provider = {
       provide: AppConfigService,
-      useFactory: (configService: ConfigService) =>
-        new AppConfigService(configService),
+      useFactory: (configService: ConfigService) => new AppConfigService(configService),
       inject: [ConfigService],
     };
 
     const appConfigHealthIndicatorProvider: Provider = {
       provide: AppConfigHealthIndicator,
-      useFactory: (configService: AppConfigService) =>
-        new AppConfigHealthIndicator(configService),
+      useFactory: (configService: AppConfigService) => new AppConfigHealthIndicator(configService),
       inject: [AppConfigService],
     };
 
@@ -31,11 +29,7 @@ export class AppConfigModule {
           validationSchema: options.validationSchema,
         }),
       ],
-      providers: [
-        ConfigService,
-        appConfigServiceProvider,
-        appConfigHealthIndicatorProvider,
-      ],
+      providers: [ConfigService, appConfigServiceProvider, appConfigHealthIndicatorProvider],
       exports: [ConfigService, AppConfigService, AppConfigHealthIndicator],
     };
   }

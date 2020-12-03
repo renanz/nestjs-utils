@@ -34,10 +34,7 @@ export class AppHealthModule {
 
     return {
       module: AppHealthModule,
-      imports: [
-        TerminusModule,
-        AppConfigModule.forRoot(options.appConfigModuleOptions),
-      ],
+      imports: [TerminusModule, AppConfigModule.forRoot(options.appConfigModuleOptions)],
       providers: [appHealthServiceProvider],
       exports: [AppHealthService],
     };
