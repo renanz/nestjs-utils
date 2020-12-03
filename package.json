@@ -45,6 +45,7 @@
     "@nestjs/graphql": "^7.9.1",
     "@nestjs/terminus": "^7.0.1",
     "@nestjs/typeorm": "^7.1.5",
+    "joi": "^17.3.0",
     "rxjs": "^6.6.3",
     "typeorm": "^0.2.29"
   }
