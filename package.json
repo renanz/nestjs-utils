@@ -1,19 +1,25 @@
 {
   "name": "nestjs-utils",
   "version": "1.0.0",
-  "description": "Nestjs Utils",
-  "main": "index.js",
+  "description": "Nestjs Utils Package",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/renanz/nestjs-utils.git"
   },
-  "author": "",
+  "author": "Renan Zelaya",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/renanz/nestjs-utils/issues"
