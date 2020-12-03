@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectEntityManager } from '@nestjs/typeorm';
 import { Repository, FindOneOptions, DeleteResult, FindManyOptions, FindConditions } from 'typeorm';
 
-export type FindOneArguments<T> = [id: number, options?: FindOneOptions<T>] | [options?: FindOneOptions<T>];
-
 @Injectable()
 export class CommonService<TEntity> {
   constructor(@InjectEntityManager() private readonly repository: Repository<TEntity>) {}
@@ -12,14 +10,18 @@ export class CommonService<TEntity> {
     return await this.repository.find(options);
   }
 
-  public async findOne(...[paramOne, options]: FindOneArguments<TEntity>): Promise<TEntity | undefined> {
+  public async findOne(
+    ...[paramOne, options]: [id: number, options?: FindOneOptions<TEntity>] | [options?: FindOneOptions<TEntity>]
+  ): Promise<TEntity | undefined> {
     if (typeof paramOne === 'number') {
       return await this.repository.findOne(paramOne, options);
     }
     return await this.repository.findOne(paramOne);
   }
 
-  public async findOneOrFail(...[paramOne, options]: FindOneArguments<TEntity>): Promise<TEntity> {
+  public async findOneOrFail(
+    ...[paramOne, options]: [id: number, options?: FindOneOptions<TEntity>] | [options?: FindOneOptions<TEntity>]
+  ): Promise<TEntity> {
     if (typeof paramOne === 'number') {
       return await this.repository.findOneOrFail(paramOne, options);
     }
