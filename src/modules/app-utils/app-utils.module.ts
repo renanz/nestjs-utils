@@ -1,6 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { CommonService } from '../common';
-import { AppConfigModule } from '../app-config';
+import { AppConfigModule, AppConfigService } from '../app-config';
 import { AppHealthModule, AppHealthService } from '../app-health';
 
 @Module({})
@@ -8,9 +8,9 @@ export class AppUtilsModule {
   static forRoot(): DynamicModule {
     return {
       module: AppUtilsModule,
-      imports: [AppHealthModule, AppConfigModule],
-      providers: [CommonService, AppHealthService],
-      exports: [CommonService, AppHealthService],
+      imports: [AppHealthModule.forRoot(), AppConfigModule.forRoot()],
+      providers: [CommonService, AppHealthService, AppConfigService],
+      exports: [CommonService, AppHealthService, AppConfigService],
     };
   }
 
