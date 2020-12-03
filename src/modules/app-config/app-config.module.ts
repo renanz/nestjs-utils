@@ -30,7 +30,7 @@ export class AppConfigModule {
         }),
       ],
       providers: [ConfigService, appConfigServiceProvider, appConfigHealthIndicatorProvider],
-      exports: [ConfigService, AppConfigService, AppConfigHealthIndicator],
+      exports: [ConfigService, appConfigServiceProvider, appConfigHealthIndicatorProvider],
     };
   }
 
