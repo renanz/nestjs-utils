@@ -1,15 +1,16 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
 import { AppConfigModule } from '../app-config/app-config.module';
-import { HealthController } from './health.controller';
+import { AppHealthService } from './app-health.service';
 
 @Module({})
-export class HealthModule {
+export class AppHealthModule {
   static forRoot(): DynamicModule {
     return {
-      module: HealthModule,
+      module: AppHealthModule,
       imports: [TerminusModule, AppConfigModule],
-      controllers: [HealthController],
+      providers: [AppHealthService],
+      exports: [AppHealthService],
     };
   }
 }

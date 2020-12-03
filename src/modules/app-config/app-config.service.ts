@@ -4,4 +4,7 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class AppConfigService {
   constructor(private readonly configService: ConfigService) {}
+  hello() {
+    return 'world';
+  }
 }

@@ -1,6 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import {
-  HealthCheck,
   HealthCheckService,
   DNSHealthIndicator,
   TypeOrmHealthIndicator,
@@ -8,8 +6,7 @@ import {
 } from '@nestjs/terminus';
 import { AppConfigHealthIndicator } from '../app-config';
 
-@Controller('health')
-export class HealthController {
+export class AppHealthService {
   constructor(
     private readonly health: HealthCheckService,
     private readonly memory: MemoryHealthIndicator,
@@ -18,9 +15,6 @@ export class HealthController {
     private readonly appConfig: AppConfigHealthIndicator,
   ) {}
 
-  @Get()
-  @HttpCode(HttpStatus.OK)
-  @HealthCheck()
   healthCheck() {
     return this.health.check([
       async () => this.memory.checkHeap('memory_heap', 3000 * 1024 * 1024),
