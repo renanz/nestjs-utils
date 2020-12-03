@@ -6,7 +6,7 @@ import {
   TypeOrmHealthIndicator,
   MemoryHealthIndicator,
 } from '@nestjs/terminus';
-import { AppConfigHealthIndicator } from '../app-config/app-config.health.indicator';
+import { AppConfigHealthIndicator } from '../app-config';
 
 @Controller('health')
 export class HealthController {
