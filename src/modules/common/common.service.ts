@@ -10,8 +10,11 @@ export class CommonService<TEntity> {
     return await this.repository.find(options);
   }
 
+  public async findOne(paramOne: number, options?: FindOneOptions<TEntity>): Promise<TEntity | undefined>;
+  public async findOne(options: FindOneOptions<TEntity>): Promise<TEntity | undefined>;
   public async findOne(
-    ...[paramOne, options]: [id: number, options?: FindOneOptions<TEntity>] | [options?: FindOneOptions<TEntity>]
+    paramOne: number | FindOneOptions<TEntity>,
+    options?: FindOneOptions<TEntity>,
   ): Promise<TEntity | undefined> {
     if (typeof paramOne === 'number') {
       return await this.repository.findOne(paramOne, options);
@@ -19,9 +22,12 @@ export class CommonService<TEntity> {
     return await this.repository.findOne(paramOne);
   }
 
+  public async findOneOrFail(paramOne: number, options?: FindOneOptions<TEntity>): Promise<TEntity | undefined>;
+  public async findOneOrFail(options: FindOneOptions<TEntity>): Promise<TEntity | undefined>;
   public async findOneOrFail(
-    ...[paramOne, options]: [id: number, options?: FindOneOptions<TEntity>] | [options?: FindOneOptions<TEntity>]
-  ): Promise<TEntity> {
+    paramOne: number | FindOneOptions<TEntity>,
+    options?: FindOneOptions<TEntity>,
+  ): Promise<TEntity | undefined> {
     if (typeof paramOne === 'number') {
       return await this.repository.findOneOrFail(paramOne, options);
     }
