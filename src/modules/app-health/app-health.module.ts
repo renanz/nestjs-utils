@@ -6,7 +6,7 @@ import {
   MemoryHealthIndicator,
   TerminusModule,
 } from '@nestjs/terminus';
-import { AppConfigHealthIndicator } from '../app-config';
+import { AppConfigHealthIndicator, APP_CONFIG_HEALTH_INDICATOR } from '../app-config';
 import { AppConfigModule } from '../app-config/app-config.module';
 import { APP_HEALTH_SERVICE } from './app-health.constants';
 import { AppHealthModuleOptions } from './app-health.interface';
@@ -22,12 +22,14 @@ export class AppHealthModule {
         memory: MemoryHealthIndicator,
         db: TypeOrmHealthIndicator,
         dns: DNSHealthIndicator,
-      ) => new AppHealthService(health, memory, db, dns, {} as AppConfigHealthIndicator),
+        appConfigHealthIndicator: AppConfigHealthIndicator,
+      ) => new AppHealthService(health, memory, db, dns, appConfigHealthIndicator),
       inject: [
         HealthCheckService,
         MemoryHealthIndicator,
         TypeOrmHealthIndicator,
         DNSHealthIndicator,
+        APP_CONFIG_HEALTH_INDICATOR,
       ],
     };
 
