@@ -1,4 +1,5 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { AppCommonService } from '../app-common/app-common.service';
 import { AppConfigModule } from '../app-config';
 import { AppHealthModule } from '../app-health';
 import { AppModulesOptions } from './app-utils.interface';
@@ -14,8 +15,8 @@ export class AppUtilsModule {
           appConfigModuleOptions,
         }),
       ],
-      providers: [],
-      exports: [AppConfigModule, AppHealthModule],
+      providers: [AppCommonService],
+      exports: [AppConfigModule, AppHealthModule, AppCommonService],
     };
   }
 
