@@ -1,8 +1,12 @@
 import { HealthIndicator, HealthIndicatorResult, HealthCheckError } from '@nestjs/terminus';
+import { InjectAppConfigService } from './app-config.decorators';
 import { AppConfigService } from './app-config.service';
 
 export class AppConfigHealthIndicator extends HealthIndicator {
-  constructor(private readonly appConfigService: AppConfigService) {
+  constructor(
+    @InjectAppConfigService()
+    private readonly appConfigService: AppConfigService,
+  ) {
     super();
   }
 

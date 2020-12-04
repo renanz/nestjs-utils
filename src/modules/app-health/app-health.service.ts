@@ -4,7 +4,7 @@ import {
   TypeOrmHealthIndicator,
   MemoryHealthIndicator,
 } from '@nestjs/terminus';
-import { AppConfigHealthIndicator } from '../app-config';
+import { AppConfigHealthIndicator, InjectAppConfigHealthIndicator } from '../app-config';
 
 export class AppHealthService {
   constructor(
@@ -12,6 +12,7 @@ export class AppHealthService {
     private readonly memory: MemoryHealthIndicator,
     private readonly db: TypeOrmHealthIndicator,
     private readonly dns: DNSHealthIndicator,
+    @InjectAppConfigHealthIndicator()
     private readonly appConfig: AppConfigHealthIndicator,
   ) {}
 

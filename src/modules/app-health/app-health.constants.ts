@@ -1,0 +1,1 @@
+export const APP_HEALTH_SERVICE = 'APP_HEALTH_SERVICE';

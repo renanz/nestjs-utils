@@ -1,5 +1,6 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_CONFIG_HEALTH_INDICATOR, APP_CONFIG_SERVICE } from './app-config.constants';
 import { AppConfigHealthIndicator } from './app-config.health.indicator';
 import { AppConfigModuleOptions } from './app-config.interface';
 import { AppConfigService } from './app-config.service';
@@ -10,15 +11,15 @@ export class AppConfigModule {
     options: AppConfigModuleOptions<TJoiObjectSchema>,
   ): DynamicModule {
     const appConfigServiceProvider: Provider = {
-      provide: AppConfigService,
+      provide: APP_CONFIG_SERVICE,
       useFactory: (configService: ConfigService) => new AppConfigService(configService),
       inject: [ConfigService],
     };
 
     const appConfigHealthIndicatorProvider: Provider = {
-      provide: AppConfigHealthIndicator,
+      provide: APP_CONFIG_HEALTH_INDICATOR,
       useFactory: (configService: AppConfigService) => new AppConfigHealthIndicator(configService),
-      inject: [AppConfigService],
+      inject: [APP_CONFIG_SERVICE],
     };
 
     return {
@@ -30,7 +31,7 @@ export class AppConfigModule {
         }),
       ],
       providers: [ConfigService, appConfigServiceProvider, appConfigHealthIndicatorProvider],
-      exports: [ConfigService, appConfigServiceProvider, appConfigHealthIndicatorProvider],
+      exports: [ConfigService, APP_CONFIG_SERVICE, APP_CONFIG_HEALTH_INDICATOR],
     };
   }
 

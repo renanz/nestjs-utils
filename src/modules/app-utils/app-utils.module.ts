@@ -10,7 +10,9 @@ export class AppUtilsModule {
       module: AppUtilsModule,
       imports: [
         AppConfigModule.forRoot(appConfigModuleOptions),
-        AppHealthModule.forRoot({ appConfigModuleOptions }),
+        AppHealthModule.forRoot({
+          appConfigModuleOptions,
+        }),
       ],
       providers: [],
       exports: [AppConfigModule, AppHealthModule],
