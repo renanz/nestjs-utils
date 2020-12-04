@@ -24,7 +24,7 @@ export class AppConfigService {
       entities: [this.typeOrmEntities],
       logging: this.configService.get<string>('db.logging') === 'true',
       extra: { max: 4, min: 1 },
-      synchronize: false,
+      synchronize: this.configService.get<string>('db.synchronize') === 'true',
     };
   }
 
