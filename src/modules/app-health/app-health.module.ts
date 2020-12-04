@@ -1,5 +1,11 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
-import { TerminusModule } from '@nestjs/terminus';
+import {
+  HealthCheckService,
+  DNSHealthIndicator,
+  TypeOrmHealthIndicator,
+  MemoryHealthIndicator,
+  TerminusModule,
+} from '@nestjs/terminus';
 import { AppConfigModule } from '../app-config/app-config.module';
 import { APP_HEALTH_SERVICE } from './app-health.constants';
 import { AppHealthModuleOptions } from './app-health.interface';
@@ -11,6 +17,12 @@ export class AppHealthModule {
     const appHealthServiceProvider: Provider = {
       provide: APP_HEALTH_SERVICE,
       useClass: AppHealthService,
+      inject: [
+        HealthCheckService,
+        MemoryHealthIndicator,
+        TypeOrmHealthIndicator,
+        DNSHealthIndicator,
+      ],
     };
 
     return {
