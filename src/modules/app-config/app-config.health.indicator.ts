@@ -13,7 +13,7 @@ export class AppConfigHealthIndicator extends HealthIndicator {
   async isHealthy(key: string): Promise<HealthIndicatorResult> {
     const isHealthy = true;
     const result = this.getStatus(key, isHealthy, {
-      current: this.appConfigService.hello(),
+      currentVersion: this.appConfigService.version,
     });
 
     if (isHealthy) {
