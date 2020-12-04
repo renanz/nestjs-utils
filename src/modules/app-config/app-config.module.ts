@@ -18,7 +18,7 @@ export class AppConfigModule {
 
     const appConfigHealthIndicatorProvider: Provider = {
       provide: APP_CONFIG_HEALTH_INDICATOR,
-      useFactory: (configService: AppConfigService) => new AppConfigHealthIndicator(configService),
+      useClass: AppConfigHealthIndicator,
       inject: [APP_CONFIG_SERVICE],
     };
 
