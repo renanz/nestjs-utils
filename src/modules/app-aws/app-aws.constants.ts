@@ -1,0 +1,1 @@
+export const APP_AWS_SERVICE = 'APP_AWS_SERVICE';
