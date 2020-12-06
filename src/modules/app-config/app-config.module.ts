@@ -1,5 +1,6 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AppAwsModule, AppAwsService, APP_AWS_SERVICE } from '../app-aws';
 import { APP_CONFIG_HEALTH_INDICATOR, APP_CONFIG_SERVICE } from './app-config.constants';
 import { AppConfigHealthIndicator } from './app-config.health.indicator';
 import { AppConfigModuleOptions } from './app-config.interface';
@@ -12,8 +13,9 @@ export class AppConfigModule {
   ): DynamicModule {
     const appConfigServiceProvider: Provider = {
       provide: APP_CONFIG_SERVICE,
-      useFactory: (configService: ConfigService) => new AppConfigService(configService),
-      inject: [ConfigService],
+      useFactory: (configService: ConfigService, appAwsService: AppAwsService) =>
+        new AppConfigService(configService, appAwsService),
+      inject: [ConfigService, APP_AWS_SERVICE],
     };
 
     const appConfigHealthIndicatorProvider: Provider = {
@@ -29,6 +31,7 @@ export class AppConfigModule {
           load: options.load,
           validationSchema: options.validationSchema,
         }),
+        AppAwsModule.forRoot(options.appAwsConfigModuleOptions),
       ],
       providers: [ConfigService, appConfigServiceProvider, appConfigHealthIndicatorProvider],
       exports: [ConfigService, APP_CONFIG_SERVICE, APP_CONFIG_HEALTH_INDICATOR],
