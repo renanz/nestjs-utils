@@ -45,9 +45,15 @@
     "@nestjs/config": "^0.6.1",
     "@nestjs/core": "^7.5.5",
     "@nestjs/graphql": "^7.9.1",
+    "@nestjs/passport": "^7.1.5",
     "@nestjs/terminus": "^7.0.1",
     "@nestjs/typeorm": "^7.1.4",
+    "@tfarras/nestjs-firebase-admin": "^1.0.1",
+    "@tfarras/nestjs-firebase-auth": "^1.0.0",
+    "@types/passport-jwt": "^3.0.3",
+    "aws-sdk": "^2.804.0",
     "joi": "^17.3.0",
+    "passport-jwt": "^4.0.0",
     "rxjs": "^6.6.3",
     "typeorm": "0.2.28"
   }
