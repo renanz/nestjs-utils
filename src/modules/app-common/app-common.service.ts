@@ -4,7 +4,7 @@ import { Repository, FindOneOptions, DeleteResult, FindManyOptions, FindConditio
 
 @Injectable()
 export class AppCommonService<TEntity> {
-  constructor(@InjectEntityManager() private readonly repository: Repository<TEntity>) {}
+  constructor(@InjectEntityManager() protected readonly repository: Repository<TEntity>) {}
 
   public async find(
     options?: FindConditions<TEntity> | FindManyOptions<TEntity>,
