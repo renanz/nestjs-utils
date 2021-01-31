@@ -8,12 +8,18 @@ export class AppAwsService {
     AWS.config.update({
       region: 'us-east-1',
     });
-    this.s3 = new AWS.S3({
+    const s3Options: AWS.S3.ClientConfiguration = {
       signatureVersion: 'v4',
-      accessKeyId: configService.accessKeyId,
-      secretAccessKey: configService.secretAccessKey,
       region: 'us-east-1',
-    });
+    };
+    if (configService.accessKeyId && configService.secretAccessKey) {
+      s3Options.credentials = {
+        accessKeyId: configService.accessKeyId,
+        secretAccessKey: configService.secretAccessKey,
+      };
+    }
+
+    this.s3 = new AWS.S3(s3Options);
   }
 
   public listAllKeys(
