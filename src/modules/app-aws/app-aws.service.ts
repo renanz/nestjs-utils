@@ -13,8 +13,8 @@ export class AppAwsService {
       region: 'us-east-1',
     };
     console.log(
-      'accessKeyId secretAccessKey',
-      configService.accessKeyId && configService.secretAccessKey,
+      `accessKeyId="${configService.accessKeyId}" secretAccessKey="${configService.secretAccessKey}"`,
+      `equal="${configService.accessKeyId && configService.secretAccessKey}"`,
     );
     if (configService.accessKeyId && configService.secretAccessKey) {
       s3Options.credentials = {
