@@ -12,6 +12,10 @@ export class AppAwsService {
       signatureVersion: 'v4',
       region: 'us-east-1',
     };
+    console.log(
+      'accessKeyId secretAccessKey',
+      configService.accessKeyId && configService.secretAccessKey,
+    );
     if (configService.accessKeyId && configService.secretAccessKey) {
       s3Options.credentials = {
         accessKeyId: configService.accessKeyId,
